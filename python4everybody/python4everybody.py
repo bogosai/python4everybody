@@ -1,3 +1,3 @@
+print('i would like to learn python')
 
-text = "X-DSPAM-Confidence:    0.8475"
-pos = text.find(0)
+
