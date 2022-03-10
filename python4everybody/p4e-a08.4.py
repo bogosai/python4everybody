@@ -8,7 +8,4 @@ for ln in fh:
         if miniitem in lst:continue
         lst.append(miniitem)
 lst.sort()
-print(lst)
-
-
-    
+print(lst)    
