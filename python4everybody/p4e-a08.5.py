@@ -1,8 +1,15 @@
-fname = input("Enter file name: ")
-if len(fname) < 1:
-    fname = "mbox-short.txt"
+fn = input("Enter file name: ")
 
-fh = open(fname)
+try:
+    fname = open(fn)
+except:
+    print("cannot find file")
+    quit()
 count = 0
-
+for ln in fname:
+    line = ln.strip()
+    if not 'From ' in line:continue
+    sline = line.split()
+    count = count + 1
+    print(sline[1])
 print("There were", count, "lines in the file with From as the first word")
