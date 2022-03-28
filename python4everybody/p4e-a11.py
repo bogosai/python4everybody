@@ -1,22 +1,14 @@
-import re
+import socket
 
-name = input("Enter file:")
-if len(name) < 1:
-    name = "regex_sum_1501879.txt"
-    #name = open("test11.txt")
-    #name = open("regex_sum_42.txt")
-handle = open(name)
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(('data.pr4e.org', 80))
+cmd = 'GET http://data.pr4e.org/intro-short.txt HTTP/1.0\r\n\r\n'.encode()
+mysock.send(cmd)
 
-numbers = list()
-result = 0
-for ln in handle:
-    line = ln.strip()
-    numbers = re.findall("[0-9]+",line)
-    if len(numbers) < 1 : continue
-    #print(len(numbers))
-    i = 1
-    while i <= len(numbers):
-        value = int(numbers[i - 1])
-        result = result + value
-        i = i + 1
-print(result)
+while True:
+    data = mysock.recv(512)
+    if len(data) < 1:
+        break
+    print(data.decode(),end='')
+
+mysock.close()
